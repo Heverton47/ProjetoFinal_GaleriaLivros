@@ -1,0 +1,2 @@
+Aqui pode ter um filtro de busca de livros por título, nome do autor ou usuário que adicionou por exemplo.
+Seguindo nesta lógica a gente provavelmente poderia implementar aqui algumas funções para filtrar o que vai ser enviado para os cards
