@@ -1,2 +1,19 @@
-ESTA PROVAVELMENTE SERIA A PRÓXIMA PARTE FEITA, COM O NOME, REDES SOCIAIS E O LOGO E TALVEZ UM ATALHO PARA A HOME(ONDE EU IMAGINO TENDO INFORMAÇÕES SOBRE O PROJETO, 
-COMO ELE FUNCIONA E QUEM SÃO OS AUTORES(NÓS)). 
+<!--ESTA PROVAVELMENTE SERIA A PRÓXIMA PARTE FEITA, COM O NOME, REDES SOCIAIS E O LOGO E TALVEZ UM ATALHO PARA A HOME(ONDE EU IMAGINO TENDO INFORMAÇÕES SOBRE O PROJETO, 
+COMO ELE FUNCIONA E QUEM SÃO OS AUTORES(NÓS)).-->
+<footer class="bg-dark text-white p-3 bottom-0 mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-start">
+        <p class="mb-1">Desenvolvido por: Heverton Ricardo e Caio Lamers</p>
+        <p class="mb-0">2026</p>
+      </div>
+
+      <div class="col-md-6 text-end">
+        <h5>Redes Sociais</h5>
+        <a href="#" class=""><img class="icon_rede" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1280px-Instagram_logo_2022.svg.png" alt="Instagram"></a>
+        <a href="#" class=""><img class="icon_rede" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1280px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook"></a>
+        <a href="#" class=""><img class="icon_rede" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1280px-Logo_of_Twitter.svg.png" alt="Twitter"></a>
+      </div>
+    </div>
+  </div>
+</footer> 
