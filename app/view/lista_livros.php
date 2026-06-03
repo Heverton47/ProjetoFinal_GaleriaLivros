@@ -14,53 +14,61 @@ $livros = $livroModel->listar($categoriaId);
 
 // Listar categorias
 $categorias = $categoriaModel->listarCategoria();
+include 'cabecalho.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://cdn.pixabay.com/photo/2016/09/16/09/20/books-1673578_1280.png" type="image/x-icon">
+    <link rel="icon" href="https://cdn.pixabay.com/photo/2016/09/16/09/20/books-1673578_1280.png" type="image/png">
     <link rel="stylesheet" href="../../css/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Galeria de Livros</title>
 </head>
-<body>
+<body class="lista_livros">
 
-<h1>Galeria de Livros</h1>
+<div class="container-fluid">
+<div class="row">
 
-<form method="get">
-    <label>Filtrar por categoria:</label>
-    <select name="categoria_id" onchange="this.form.submit()">
-        <option value="">Todos</option>
-        <?php foreach ($categorias as $categoria): ?>
+    <div class="col-2 coluna_preta d-none d-md-block"></div>
+
+    <div class="col-8 conteudo">
+    <div class="text-center mb-4">
+      <form method="get">
+        <label class="text-white"> <strong>FILTRAR POR CATEGORIA:</strong></label>
+        <select name="categoria_id" onchange="this.form.submit()">
+          <option value="">Todos</option>
+          <?php foreach ($categorias as $categoria): ?>
             <option value="<?php echo $categoria['id']; ?>" 
-                <?php if ($categoriaId == $categoria['id']) echo 'selected'; ?>>
-                <?php echo htmlspecialchars($categoria['nome']); ?>
+              <?php if ($categoriaId == $categoria['id']) echo 'selected'; ?>>
+              <?php echo htmlspecialchars($categoria['nome']); ?>
             </option>
-        <?php endforeach; ?>
-    </select>
-    <button type="submit">Filtrar</button>
-</form>
-
-<div class="container">
-    <div class="row">
-<?php foreach ($livros as $livro): ?>
-        <div class="col-12 col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body shadow-sm">
-                    <img src="<?= htmlspecialchars($livro['imagem']) ?>" class="card-img-top">
-                    <h3><?= htmlspecialchars($livro['titulo']) ?></h3>
-                    <h4><?= htmlspecialchars($livro['autor']) ?></h4>
-                    <h4><?= htmlspecialchars($livro['categoria']) ?></h4>
-                    <!-- <h4><?= htmlspecialchars($livro['usuario']) ?></h4> --> <!--AINDA PRECISO DECIDIR SE ISSO VAI FICAR AQUI OU NO DETALHES -->
-                    <a href="detalhe_livro.php?id=<?= htmlspecialchars($livro['id']) ?>" class="btn btn-primary btn-lg">Ver mais</a>
-                </div>
-            </div>
-        </div>
-<?php endforeach; ?>
+          <?php endforeach; ?>
+        </select>
+      </form>
     </div>
-</div>
 
+      <div class="row mt-4">
+        <?php foreach ($livros as $livro): ?>
+          <div class="col-12 col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body shadow-sm">
+                <img src="<?= htmlspecialchars($livro['imagem']) ?>" class="card-img-top">
+                <h3><?= htmlspecialchars($livro['titulo']) ?></h3>
+                <h4><?= htmlspecialchars($livro['autor']) ?></h4>
+                <h4><?= htmlspecialchars($livro['categoria']) ?></h4>
+                <a href="detalhe_livro.php?id=<?= htmlspecialchars($livro['id']) ?>" class="btn btn-primary btn-lg">Ver mais</a>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>  
+    </div>
+
+    <div class="col-2 coluna_preta d-none d-md-block"></div>
+  </div>
+</div>
+<?php include 'rodape.php'; ?>
 </body>
 </html>
