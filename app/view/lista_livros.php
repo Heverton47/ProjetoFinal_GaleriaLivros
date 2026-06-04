@@ -1,18 +1,19 @@
 <?php require_once __DIR__ . '/../model/conexao.php'; ?>
 <?php require_once __DIR__ . '/../model/Livro.php'; ?>
 <?php require_once __DIR__ . '/../model/Categoria.php'; ?>
+<?php require_once __DIR__ . '/../model/Usuario.php'; ?>
+
 <?php
-// Instanciar classes
 $livroModel = new Livro($pdo);
 $categoriaModel = new Categoria($pdo);
+$usuarioModel = new Usuario($pdo);
 
-// Pegar categoria selecionada (se houver)
 $categoriaId = isset($_GET['categoria_id']) && $_GET['categoria_id'] !== '' ? (int)$_GET['categoria_id'] : null;
+$usuarioId = isset($_POST['usuario_id']) && $_POST['usuario_id'] !== '' ? (int)$_POST['usuario_id'] : null;
 
-// Listar livros (com ou sem filtro)
-$livros = $livroModel->listar($categoriaId);
+$livros = $livroModel->listar($categoriaId, $usuarioId);
 
-// Listar categorias
+$usuarios = $usuarioModel->listar();
 $categorias = $categoriaModel->listarCategoria();
 include 'cabecalho.php';
 ?>
@@ -47,6 +48,20 @@ include 'cabecalho.php';
           <?php endforeach; ?>
         </select>
       </form>
+
+      <form method="post">
+        <label class="text-white"> <strong>FILTRAR POR USUÁRIO:</strong></label>
+        <select name="usuario_id" onchange="this.form.submit()">
+          <option value="">Todos</option>
+          <?php foreach ($usuarios as $usuario): ?>
+            <option value="<?php echo $usuario['id']; ?>" 
+              <?php if ($usuarioId == $usuario['id']) echo 'selected'; ?>>
+              <?php echo htmlspecialchars($usuario['nome']); ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </form>
+
     </div>
 
       <div class="row mt-4">

@@ -1,18 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: #000000;
     margin: 0;
     text-align: center;
-    background-image: url("https://wallpapers.com/images/hd/wooden-background-yr2pmw1y85mn0u6g.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_1280.jpg");
 }
 
 body.lista_livros {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: #000000;
     margin: 0;
     text-align: center;
     padding-top: 100px;
-    background-image: url("https://wallpapers.com/images/hd/wooden-background-yr2pmw1y85mn0u6g.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2016/03/15/02/42/floor-1256804_1280.jpg");
 }
 
 .row{
