@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../controller/CategoriaController.php';
 
 Seguranca::exigirLogin();
+Seguranca::validarAdmin();
 
 $controller = new CategoriaController($pdo);
 $erro = $controller->salvar();

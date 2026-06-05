@@ -1,6 +1,4 @@
-<!--ESTA PROVAVELMENTE SERIA A PRÓXIMA PARTE FEITA, COM O NOME, REDES SOCIAIS E O LOGO E TALVEZ UM ATALHO PARA A HOME(ONDE EU IMAGINO TENDO INFORMAÇÕES SOBRE O PROJETO, 
-COMO ELE FUNCIONA E QUEM SÃO OS AUTORES(NÓS)).-->
-<footer class="bg-dark text-white p-3 bottom-0 mt-4">
+<footer class="bg-dark text-white p-3 mt-auto">
   <div class="container">
     <div class="row">
       <div class="col-md-4 text-center">

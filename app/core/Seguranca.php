@@ -40,4 +40,13 @@ class Seguranca {
 
         return $_SESSION['usuario'] ?? null;
     }
+
+    public static function validarAdmin(): void {
+        self::iniciarSessao();
+
+        if($_SESSION['usuario']['id'] != 1){
+            header("location: login.php");
+            exit;
+        }
+    }
 }
