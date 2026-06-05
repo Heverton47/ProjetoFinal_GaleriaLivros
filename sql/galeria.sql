@@ -5,7 +5,7 @@ CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL, -- armazenada com password_hash()
+    senha VARCHAR(255) NOT NULL -- armazenada com password_hash()
 );
 
 CREATE TABLE categorias (
@@ -24,11 +24,10 @@ CREATE TABLE livros (
     FOREIGN KEY (categoria_id) REFERENCES categorias(id),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
---FALTA INSERIR AS SENHAS POR MEIO DO PASSWORD_HASH() NO PHP, ENTÃO É NECESSÁRIO FAZER A PARTE DAQUI.
 INSERT INTO usuarios (nome, email, senha) VALUES 
-('Admin', 'admininas@gmail.com', ""),
-('Heverton', 'heverton@gmail.com', ""),
-('Caio', 'caio@gmail.com', "");
+('Admin', 'admin@admin.com', '$2y$12$auTVVtFyvLNxb9BH3KuXiOevRj82ahbpiLg3d0O0.iyMc.NzaVFJi'),
+('Heverton', 'heverton@gmail.com', '$2y$12$auTVVtFyvLNxb9BH3KuXiOevRj82ahbpiLg3d0O0.iyMc.NzaVFJi'),
+('Caio', 'caio@gmail.com', '$2y$12$auTVVtFyvLNxb9BH3KuXiOevRj82ahbpiLg3d0O0.iyMc.NzaVFJi');
 
 INSERT INTO categorias (nome) VALUES 
 ('Fantasia'),

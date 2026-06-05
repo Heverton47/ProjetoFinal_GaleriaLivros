@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,8 +28,8 @@
     <a href="app/view/lista_livros.php" class="btn btn-primary btn-lg text-white">Ver livros</a><br><br>   
     <a href="app/view/login.php" class="btn btn-primary btn-lg text-white">Login/Cadastro</a><br><br>
         <?php if (isset($_SESSION['usuario'])): ?>
-            <a href="" class="btn btn-primary btn-lg text-white">CADASTRAR</a><br><br>
-            <a href="" class="btn btn-danger btn-lg text-white">LOGOUT</a>
+            <a href="app/view/cadastro_protegido.php" class="btn btn-primary btn-lg text-white">AREA RESTRITA</a><br><br>
+            <a href="app/view/logout.php" class="btn btn-danger btn-lg text-white">LOGOUT</a>
         <?php endif; ?>
     </div>
 

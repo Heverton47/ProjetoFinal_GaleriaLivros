@@ -1,4 +1,3 @@
-<!--ACREDITO QUE A MAIORIA DAS FUNCOES CRUD SEJAM APENAS DISPONÍVEIS PARA O ADMIN-->
 <?php 
 class Categoria {
     private $pdo;
@@ -9,7 +8,10 @@ class Categoria {
 
     function listarCategoria() {
         $sql = "SELECT * FROM categorias";
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function cadastrarCategoria($nome): void {
@@ -61,4 +63,3 @@ class Categoria {
         $stmt->execute([':id' => $id]);
     }
 }
-?>

@@ -6,6 +6,9 @@ COMO ELE FUNCIONA E QUEM SÃO OS AUTORES(NÓS).
 TAMBÉM VAI PERMITIR NAVEGAÇÃO PARA AS OUTRAS PÁGINAS, TAL QUAL O INDEX VAI FAZER INICIALMENTE E O CABEÇALHO VAI PERMITIR DEPOIS.-->
 
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include 'cabecalho.php';
 ?>
 

@@ -3,14 +3,8 @@ require_once __DIR__ . '/../controller/UsuarioController.php';
 
 Seguranca::iniciarSessao();
 
-if (!empty($_SESSION['usuario'])) {
-    header('Location: cadastro_protegido.php');
-    exit;
-}
-
 $controller = new UsuarioController($pdo);
-$erro = $controller->login();
-$emailSalvo = $_COOKIE['ultimo_email'] ?? '';
+$erro = $controller->cadastrarPublico();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,7 +14,7 @@ $emailSalvo = $_COOKIE['ultimo_email'] ?? '';
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/09/16/09/20/books-1673578_1280.png" type="image/png">
     <link rel="stylesheet" href="../../css/estilo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Login</title>
+    <title>Cadastro de Usuario</title>
 </head>
 <body class="lista_livros">
 
@@ -31,11 +25,7 @@ $emailSalvo = $_COOKIE['ultimo_email'] ?? '';
         <div class="col-12 col-md-6">
             <div class="card shadow-lg">
                 <div class="card-body">
-                    <h2>Login</h2>
-
-                    <?php if (isset($_GET['cadastro'])): ?>
-                        <div class="alert alert-success w-100">Cadastro realizado. Faca login para continuar.</div>
-                    <?php endif; ?>
+                    <h2>Criar conta</h2>
 
                     <?php if ($erro): ?>
                         <div class="alert alert-danger w-100"><?= htmlspecialchars($erro) ?></div>
@@ -45,8 +35,13 @@ $emailSalvo = $_COOKIE['ultimo_email'] ?? '';
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Seguranca::gerarTokenCSRF()) ?>">
 
                         <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($emailSalvo) ?>" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
 
                         <div class="mb-3">
@@ -54,8 +49,8 @@ $emailSalvo = $_COOKIE['ultimo_email'] ?? '';
                             <input type="password" class="form-control" id="senha" name="senha" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Entrar</button>
-                        <a href="cadastro_usuario.php" class="btn btn-secondary">Criar conta</a>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <a href="login.php" class="btn btn-secondary">Voltar para login</a>
                     </form>
                 </div>
             </div>

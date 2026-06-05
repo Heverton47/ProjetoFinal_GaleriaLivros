@@ -6,7 +6,7 @@ class Livro {
         $this->pdo = $pdo;
     }
 
-    function cadastrar($titulo, $autor, ?int $categoria_id = null, $imagem, $descricao, $id_usuario): void {
+    function cadastrar($titulo, $autor, ?int $categoria_id, $imagem, $descricao, $id_usuario): void {
         $sql = "INSERT INTO livros (titulo, autor, categoria_id, imagem, descricao, id_usuario) 
                 VALUES (:titulo, :autor, :categoria_id, :imagem, :descricao, :id_usuario)";
         $stmt = $this->pdo->prepare($sql);
@@ -70,5 +70,24 @@ class Livro {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
+
+    function editar($id, $titulo, $autor, ?int $categoria_id, $imagem, $descricao): void {
+        $sql = "UPDATE livros
+                SET titulo=:titulo,
+                    autor=:autor,
+                    categoria_id=:categoria_id,
+                    imagem=:imagem,
+                    descricao=:descricao
+                WHERE id=:id";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $id,
+            ':titulo' => $titulo,
+            ':autor' => $autor,
+            ':categoria_id' => $categoria_id,
+            ':imagem' => $imagem,
+            ':descricao' => $descricao
+        ]);
+    }
 }
-?> 
