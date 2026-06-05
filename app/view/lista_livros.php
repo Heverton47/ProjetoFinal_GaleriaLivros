@@ -1,17 +1,23 @@
-<?php require_once __DIR__ . '/../model/conexao.php'; ?>
+<?php require_once __DIR__ . '/../model/Conexao.php'; ?>
 <?php require_once __DIR__ . '/../model/Livro.php'; ?>
 <?php require_once __DIR__ . '/../model/Categoria.php'; ?>
 <?php require_once __DIR__ . '/../model/Usuario.php'; ?>
+<?php require_once __DIR__ . '/../model/filtrar.php'; ?>
 
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $livroModel = new Livro($pdo);
 $categoriaModel = new Categoria($pdo);
 $usuarioModel = new Usuario($pdo);
 
-$categoriaId = isset($_GET['categoria_id']) && $_GET['categoria_id'] !== '' ? (int)$_GET['categoria_id'] : null;
-$usuarioId = isset($_POST['usuario_id']) && $_POST['usuario_id'] !== '' ? (int)$_POST['usuario_id'] : null;
+$categoriaId = pegarFiltroInteiro('categoria_id');
+$usuarioId = pegarFiltroInteiro('usuario_id');
+$busca = pegarFiltroTexto('search');
 
-$livros = $livroModel->listar($categoriaId, $usuarioId);
+$livros = filtrarLivrosParaCards($livroModel->listar($categoriaId, $usuarioId), $busca);
 
 $usuarios = $usuarioModel->listar();
 $categorias = $categoriaModel->listarCategoria();
@@ -36,8 +42,14 @@ include 'cabecalho.php';
 
     <div class="col-8 conteudo">
     <div class="text-center mb-4">
-      <form method="get">
-        <label class="text-white"> <strong>FILTRAR POR CATEGORIA:</strong></label>
+	      <form method="get">
+	        <?php if ($usuarioId !== null): ?>
+	          <input type="hidden" name="usuario_id" value="<?= htmlspecialchars($usuarioId) ?>">
+	        <?php endif; ?>
+	        <?php if ($busca !== ''): ?>
+	          <input type="hidden" name="search" value="<?= htmlspecialchars($busca) ?>">
+	        <?php endif; ?>
+	        <label class="text-white"> <strong>FILTRAR POR CATEGORIA:</strong></label>
         <select name="categoria_id" onchange="this.form.submit()">
           <option value="">Todos</option>
           <?php foreach ($categorias as $categoria): ?>
@@ -49,8 +61,14 @@ include 'cabecalho.php';
         </select>
       </form>
 
-      <form method="post">
-        <label class="text-white"> <strong>FILTRAR POR USUÁRIO:</strong></label>
+	      <form method="get">
+	        <?php if ($categoriaId !== null): ?>
+	          <input type="hidden" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>">
+	        <?php endif; ?>
+	        <?php if ($busca !== ''): ?>
+	          <input type="hidden" name="search" value="<?= htmlspecialchars($busca) ?>">
+	        <?php endif; ?>
+	        <label class="text-white"> <strong>FILTRAR POR USUÁRIO:</strong></label>
         <select name="usuario_id" onchange="this.form.submit()">
           <option value="">Todos</option>
           <?php foreach ($usuarios as $usuario): ?>
@@ -60,12 +78,32 @@ include 'cabecalho.php';
             </option>
           <?php endforeach; ?>
         </select>
-      </form>
+	      </form>
 
-    </div>
+        <form method="get" class="mt-3">
+          <?php if ($categoriaId !== null): ?>
+            <input type="hidden" name="categoria_id" value="<?= htmlspecialchars($categoriaId) ?>">
+          <?php endif; ?>
+          <?php if ($usuarioId !== null): ?>
+            <input type="hidden" name="usuario_id" value="<?= htmlspecialchars($usuarioId) ?>">
+          <?php endif; ?>
+          <label class="text-white"> <strong>BUSCAR POR TITULO, AUTOR OU USUARIO:</strong></label>
+          <input type="text" name="search" value="<?= htmlspecialchars($busca) ?>" placeholder="Pesquisar...">
+          <button type="submit" class="btn btn-secondary">Pesquisar</button>
+          <?php if ($busca !== '' || $categoriaId !== null || $usuarioId !== null): ?>
+            <a href="lista_livros.php" class="btn btn-outline-light">Limpar filtros</a>
+          <?php endif; ?>
+        </form>
 
-      <div class="row mt-4">
-        <?php foreach ($livros as $livro): ?>
+	    </div>
+
+	      <div class="row mt-4">
+	        <?php if (!$livros): ?>
+	          <div class="col-12">
+	            <div class="alert alert-warning">Nenhum livro encontrado para os filtros informados.</div>
+	          </div>
+	        <?php endif; ?>
+	        <?php foreach ($livros as $livro): ?>
           <div class="col-12 col-md-4 mb-4">
             <div class="card h-100">
               <div class="card-body shadow-sm">

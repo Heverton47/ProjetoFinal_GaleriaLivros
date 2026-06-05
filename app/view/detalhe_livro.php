@@ -1,11 +1,15 @@
 <!--AQUI VAI GUIAR O USUÁRIO PARA ALGUMAS DESCRIÇÕES MAIS ESPECÍFICAS SOBRE O LIVRO, COMO A DESCRIÇÃO E O USUÁRIO QUE ADICIONOU O LIVRO POR EXEMPLO.
 IMAGINO QUE VAI TER UM BOTÃO PARA VOLTAR PARA A GALERIA DE LIVROS, E TALVEZ UM BOTÃO PARA EDITAR O LIVRO, MAS ESSE BOTÃO SÓ VAI APARECER SE O USUÁRIO ESTIVER LOGADO
 E FOR O USUÁRIO QUE ADICIONOU O LIVRO, POR EXEMPLO. -->
-<?php require_once __DIR__ . '/../model/conexao.php'; ?>
+<?php require_once __DIR__ . '/../model/Conexao.php'; ?>
 <?php require_once __DIR__ . '/../model/Livro.php'; ?>
 <?php require_once __DIR__ . '/../model/Usuario.php'; ?>
 
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $livroModel = new Livro($pdo);
 
 $livroId = isset($_GET['id']) ? (int)$_GET['id'] : 0;

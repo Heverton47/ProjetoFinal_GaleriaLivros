@@ -1,15 +1,19 @@
-<!-- ESTA PROVAVELMENTE SERIA A PRÓXIMA PARTE FEITA, COM O NOME E O LOGO, E PROVAVELMENTE UM MENU DE NAVEGAÇÃO PARA AS PÁGINAS PRINCIPAIS, COMO A GALERIA DE LIVROS, 
-A PÁGINA DE LOGIN/CADASTRO, HOME E UM FILTRO DE PESQUISA. ESTA É A PARTE QUE VAI PERMITIR UMA MELHOR NAVEGAÇÃO PELO SITE. -->
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
 <header class="bg-dark text-white p-3 mb-4 fixed-top">
 <div class="container d-flex justify-content-between align-items-center">   
     <div>
         <?php if (isset($_SESSION['usuario'])): ?>
-            <a href="" class="btn btn-primary btn-lg">CADASTRAR</a>
-            <a href="" class="btn btn-danger btn-lg">LOGOUT</a>
+            <a href="cadastro_protegido.php" class="btn btn-primary btn-lg">ADMIN</a>
+            <a href="logout.php" class="btn btn-danger btn-lg">LOGOUT</a>
             <a href="../view/home.php" class="btn btn-primary btn-lg text-white">SOBRE NÓS</a>
         <?php else: ?>
             <a href="login.php" class="btn btn-primary btn-lg">LOGIN</a>
+            <a href="cadastro_usuario.php" class="btn btn-primary btn-lg">CADASTRO</a>
             <a href="../view/home.php" class="btn btn-primary btn-lg text-white">SOBRE NÓS</a>
         <?php endif; ?>
     </div>    
