@@ -84,6 +84,10 @@ $livros = $controller->listar();
                 </div>
             </div>
 
+            
+                    <?php $adm_verify = $_SESSION['usuario']['id'];
+                    if ($adm_verify === 1){ ?>
+
             <div class="card shadow-lg">
                 <div class="card-body">
                     <h2>Livros cadastrados</h2>
@@ -100,7 +104,8 @@ $livros = $controller->listar();
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($livros as $livro): ?>
+                                   <?php  foreach ($livros as $livro): ?>
+                                     
                                     <tr>
                                         <td><?= htmlspecialchars($livro['titulo']) ?></td>
                                         <td><?= htmlspecialchars($livro['autor']) ?></td>
@@ -116,7 +121,7 @@ $livros = $controller->listar();
                                             </form>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach; } //fechamento foreach e chaves?> 
                             </tbody>
                         </table>
                     </div>

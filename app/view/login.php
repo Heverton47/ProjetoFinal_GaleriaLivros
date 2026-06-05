@@ -63,7 +63,6 @@ $emailSalvo = $_COOKIE['ultimo_email'] ?? '';
     </section>
 </main>
 
-<?php include 'rodape.php'; ?>
-
 </body>
 </html>
+<?php include 'rodape.php'; ?>

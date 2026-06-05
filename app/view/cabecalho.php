@@ -21,7 +21,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <h1>GALERIA DE LIVROS</h1>
 
     <div>
-        <form method="get" class="d-flex">
+        <form method="get" class="d-flex" action="lista_livros.php">
             <input type="text" name="search" placeholder="Pesquisar...">
             <button type="submit" class="btn btn-secondary">Pesquisar</button>
         </form>
