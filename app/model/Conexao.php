@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$porta = '3306'; 
+$porta = '3307'; 
 $banco = 'galeria_livros';
 $usuario = 'root';
 $senha = '';
