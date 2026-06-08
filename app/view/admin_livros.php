@@ -86,7 +86,7 @@ $livros = $controller->listar();
 
             
                     <?php $adm_verify = $_SESSION['usuario']['id'];
-                    if ($adm_verify === 1){ ?>
+                    if ((int)$adm_verify === 1){ ?>
 
             <div class="card shadow-lg">
                 <div class="card-body">
@@ -127,6 +127,7 @@ $livros = $controller->listar();
                     </div>
                 </div>
             </div>
+          
         </div>
     </section>
 </main>
